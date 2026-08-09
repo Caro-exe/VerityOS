@@ -1,7 +1,25 @@
 <!DOCTYPE html>
 
-<html><head></head><body style="background-color: #2d4363; font-family: Andale Mono, monospace; color: #cdefe8; text-align: center">
-    <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%); width: fit-content; padding: 20px; background-color: #5887ce">
+<html>
+  <head>
+
+</head>
+    <body style="background-image: url(./stars.png); background-size:cover; font-family: Andale Mono, monospace; color: #cdefe8; text-align: center">
+    <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%); width: fit-content; padding: 20px; background-image: url(./space.png); background-size:cover">
+     <div style="position: absolute; width: 100%; display: flex; backdrop-filter: blur(10px); background-color: rgba(217, 166, 248, 0.25); color: #1ebd8d; justify-content: space-around;">
+      <p> Crab Nebula </p>
+      <p id="tyme">
+        <script>
+          function updateTime() {
+          var whattimeisit = new Date().toLocaleString();
+          var timetext = document.querySelector("#tyme");
+          timetext.innerHTML = whattimeisit;
+          }
+          setInterval(updateTime, 1000);
+
+        </script>
+      </p>
+      </div>
     <h1 style="padding:5px">HELLO THERE</h1>
     <h2> Tis me </h2>
     <h4> Mario </h4>
@@ -10,6 +28,7 @@
     <img src="images/isanyoneouthere.png" style="width: 500px; height: 500px; border-radius: 20%; object-fit: cover;" ""="">
     <br/>
     <a href="https://www.youtube.com/@CCD_Caro" style="color:aquamarine">click here yay</a>
-    <div>
+    </div>
+   
   </body>
 </html>
