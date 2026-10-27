@@ -1,2 +1,2 @@
-# StarOS
-An OS for aliens like me. 
+# VerityOS
+Ever wanted an OS of the internets favorite artificial intelligents? Hey, it’s me! It’s verity…
