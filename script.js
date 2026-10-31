@@ -182,6 +182,12 @@ var verityspeech = [
   },
   {q:"why did the chicken cross the road?",
     a: "to get to the other side!"
+  },
+  {q:"What's your favorite song?",
+    a: "Let me show you.",
+    sound: "sfx/ending.mp3",
+    sprite: "images/veritySmile.webp"
+
   }
 ]
 
@@ -232,7 +238,9 @@ nextSpeech.addEventListener("click", function() {
       console.log("sounds didn't play", error);
     });
   }
-
+  if(dialogue.sprite){
+    document.getElementById("verityCharacter").src = dialogue.sprite;
+  }
   speechIndex++;
   showNextQuestion(); 
 
