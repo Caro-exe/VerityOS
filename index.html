@@ -1,13 +1,14 @@
 <!DOCTYPE html>
 
 <html>
-  <head>
-
+<head>
+  <script src="script.js" defer> </script>
+  <link rel="stylesheet" type="text/css" href="style.css"/>
 </head>
-    <body style="background-image: url(./stars.png); background-size:cover; font-family: Andale Mono, monospace; color: #cdefe8; text-align: center">
-    <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%); width: fit-content; padding: 20px; background-image: url(./space.png); background-size:cover">
-     <div style="position: absolute; width: 100%; display: flex; backdrop-filter: blur(10px); background-color: rgba(217, 166, 248, 0.25); color: #1ebd8d; justify-content: space-around;">
-      <p> Crab Nebula </p>
+    <body style= "background-image: url('./images/background.jpeg'); background-size:cover; font-family: Comic Sans MS, cursive; color: #cdefe8; text-align: center">
+      <div id="top"> VerityOS</div>
+      <div class = "window" id = welcome style= "background-color: rgb(41, 46, 68); background-size:cover">
+      <div class = "windowheader" id = "welcomeheader" >
       <p id="tyme">
         <script>
           function updateTime() {
@@ -15,20 +16,130 @@
           var timetext = document.querySelector("#tyme");
           timetext.innerHTML = whattimeisit;
           }
+          updateTime();
           setInterval(updateTime, 1000);
 
         </script>
       </p>
-      </div>
-    <h1 style="padding:5px">HELLO THERE</h1>
-    <h2> Tis me </h2>
-    <h4> Mario </h4>
-    <p> skibidi sigma </p>
+      <p class="closeButton" id= "closeWs" style="font-size: 10px;"> x </p>
+     </div>
+    <div class="windowContent">
+      <h1 class="rainbow"> Hello</h1>
+      <br>
+      <h2 class="rainbow"> This is an extremely normal OS </h2>
+      <h4> It's just a good old day here  </h4>
+      <p> We're super happy, you should definitely consult your 
+        awesome cool and nice computer helper Verity   </p>
 
-    <img src="images/isanyoneouthere.png" style="width: 500px; height: 500px; border-radius: 20%; object-fit: cover;" ""="">
-    <br/>
-    <a href="https://www.youtube.com/@CCD_Caro" style="color:aquamarine">click here yay</a>
+      
+      <br/>
+      <a href="https://www.youtube.com/watch?v=tVlKLpxyCBY" style="color:aquamarine">context</a>
     </div>
-   
+    </div>
+    <div id="deskApps" style="padding-top: 64px; padding-left: 64px;">
+        <div onclick="handleIconTap(this)" style="filter: drop-shadow(0 0 8px rgb(1, 21, 98)); text-align: center; width: fit-content; padding: 16px; ">
+          <img src="images/ask.png" style = "border-radius: 12px; height: 100px; width: 100px;">
+          <p style="color: rgb(32, 1, 82); margin: 0px">Q&A</p>
+        </div>
+     </div>
+    <div class = "window" id = "askme" style= "background-image: url(./images/checks.png); background-size:cover">
+      <div class = "windowheader" id = "askmeheader" >
+
+      <p id ="openW"> Q&A </p>
+      <p class="closeButton" id= "closeAsk" style="font-size: 10px; color: white"> x </p>
+     </div>
+     <div class="windowContent"></div>
+       <div id="sidebar" style="padding:15px"></div>
+       <div id="QAcontent" style="padding:15px"></div>
+     </div>
+    </div>
+
+    
+  <div id="verityHelper"> 
+    <div id="speechBubble">
+      <p id="veritySpeech">
+        Hey! I'm Verity! You're friendly computer pal! 
+      </p>
+      <button id="nextSpeech"> Hello?</button>
+    </div>
+    <img src="images/verity.png" style = "border-radius: 12px; height: 100px; width: 100px;">
+  </div>
+  <div onclick="openW(document.getElementById('vInstaller'))" style=" width: fit-content; padding: 16px; cursor: pointer;"> 
+    <img src="images/box.png", alt="", style="width: 200px; height: 100px; border-radius: 12px;">
+    <p> Open me</p>
+  </div>
+    <div class="window" id="vInstaller">
+      <div class="windowheader" id="vInstallerheader">
+        <p>Verity Installer =D </p>
+        <button class="closeButton" id="vInstallerClose" style="color:white; font-size: 10px; position: center; "> x</button>
+      </div>
+
+      <div class="windowContent">
+        <h1> <b>Meet Verity, your new computer companion. </b></h1> 
+        <h2> Ever wanted a computer helper friend that knows  absolutely everything?</h2>
+        <h3> Ready to download? </h3>
+        <h2> Please accept the Terms and Conditions </h2>
+        <p class="scrolls" style="font-family: 'Times New Roman', Times, serif; font-size: 23x;">
+          <b> VERITY TERMS AND CONDITIONS ("Terms") </b>
+          <br>
+          Our terms were last updated on <span id="current-date"></span>
+          Please read the terms and conditions throughly before using Verity
+          <br>
+          <b> DEFINITIONS </b> 
+          <br> 
+          Verity: Your personal helper friend!
+          ...
+          <br>
+          <b> By accepting these terms and condition you accept the following </b>
+          <br>
+          Verity is allowed to: 
+          <br>
+          - Implement the neccessary cookies for Verity to function.
+          <br>
+          - Connect to the internet to find answers.
+          <br>
+          - Collect data such as mail, phone number...
+          <br>
+          - blah
+          <br>
+          - blah
+          <br> 
+          - blah
+          <br> 
+          - legal jargon
+          <br> 
+          - consume all of your valuable information 
+          <br>
+          - bug you until your computer perishes 
+          <br>
+          - verity will consume your soul
+          <br>
+          - your first child belongs to verity
+          <br>
+          - but so does the second
+          <br>
+          - and all of them
+          <br>
+          - give verity your children
+          <br>
+          - and <b>you</b>
+          <br>
+          - please he's lonely 
+          <br>
+          Verity.co is not liable for anything that may or may not happen to you...
+          <br> 
+          All of these are totally legally binding trust me bro. 
+        </p>
+        <label>
+          <input type="checkbox" id="terms" style= "font-family: 'Times New Roman', Times, serif;"> 
+          I accept the terms and conditions
+        </label>
+        <br> 
+        <button id="installVerity" disabled> Install now!</button>
+        <br> 
+        <progress id="installProgress" value = "0" max="100"> </progress>
+        <p id="installStatus" role="status"> Please accept terms and conditions... </p>
+      </div>
+    </div>
   </body>
 </html>
