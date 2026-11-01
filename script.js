@@ -6,6 +6,53 @@ function dragElement(element) {
   var curX = 0;
   var curY = 0;
 
+  if (document.getElementById(element.id + "header")) {
+    document.getElementById(element.id + "header").onmousedown = startDrag;
+  } else {
+    
+    element.onmousedown = startDrag;
+  }
+
+  function startDrag(e) {
+    e = e || window.event;
+    e.preventDefault();
+    intX = e.clientX;
+    intY = e.clientY;
+    document.onmouseup = stopDragging;
+    document.onmousemove = dragElement;
+  }
+
+  function dragElement(e) {
+    e = e || window.event;
+    e.preventDefault();
+    curX = intX - e.clientX;
+    curY = intY - e.clientY;
+    intX = e.clientX;
+    intY = e.clientY;
+
+    var topbar = document.getElementById("top");
+    var minimumTop = topbar.getBoundingClientRect().bottom + window.scrollY;
+    var minimumLeft = window.scrollX;
+
+    var maximumTop = Math.max(
+      minimumTop, window.scrollY + window.innerHeight - element.offsetHeight
+
+    );
+    var maximumLeft = Math.max(
+      minimumLeft, window.scrollX +  window.innerWidth - element.offsetWidth
+    );
+
+    var nextTop = element.offsetTop - curY;
+    var nextLeft = element.offsetLeft - curX;
+
+
+    element.style.top = Math.min(maximumTop, Math.max(minimumTop, nextTop)) + "px";
+
+    element.style.left = Math.min(maximumLeft, Math.max (minimumLeft, nextLeft)) + "px";
+    
+  }
+
+
 
   if (document.getElementById(element.id + "header")) {
     document.getElementById(element.id + "header").onmousedown = startDrag;
@@ -26,41 +73,38 @@ function dragElement(element) {
   function dragElement(e) {
     e = e || window.event;
     e.preventDefault();
-    // Step 10: Calculate the new cursor position.
     curX = intX - e.clientX;
     curY = intY - e.clientY;
     intX = e.clientX;
     intY = e.clientY;
-    // Step 11: Update the element's new position by modifying its `top` and `left` CSS properties.
+
     var topbar = document.getElementById("top");
     var minimumTop = topbar.getBoundingClientRect().bottom + window.scrollY;
     var minimumLeft = window.scrollX;
 
     var maximumTop = Math.max(
-      minimumTop, window.innerHeight - element.offsetHeight
+      minimumTop, window.scrollY + window.innerHeight - element.offsetHeight
 
     );
     var maximumLeft = Math.max(
-      minimumLeft, window.innerWidth - element.offsetWidth
+      minimumLeft, window.scrollX +  window.innerWidth - element.offsetWidth
     );
 
     var nextTop = element.offsetTop - curY;
     var nextLeft = element.offsetLeft - curX;
 
 
-    element.style.top = Math.max(minimumTop, nextTop) + "px"
+    element.style.top = Math.min(maximumTop, Math.max(minimumTop, nextTop)) + "px";
 
-    element.style.left = (element.offsetLeft - curX) + "px";
+    element.style.left = Math.min(maximumLeft, Math.max (minimumLeft, nextLeft)) + "px";
     
   }
 
-  // Step 12: Define the `stopDragging` function to stop tracking mouse movement by removing the event listeners.
   function stopDragging() {
     document.onmouseup = null;
     document.onmousemove = null;
   }
 }
-
 function centerWindow(element) { 
   element.style.left = window.scrollX + (window.innerWidth - element.offsetWidth) / 2 + "px"; 
   element.style.top = window.scrollY + (window.innerHeight - element.offsetHeight) / 2 + "px"; 
@@ -90,7 +134,11 @@ var askScreen = document.querySelector("#askme")
 
 var askScreenClose = document.querySelector("#closeAsk")
 
-askScreenClose.addEventListener("click", () => closeWs(askScreen));
+askScreenClose.addEventListener("click", function() {
+  closeWs(askScreen);
+
+  document.getElementById("askIcon").classList.remove("selected");
+});
 
 function closeWs(element) {
   element.style.display = "none"
@@ -117,6 +165,7 @@ function selectIcon(element) {
 
 function deselectIcon(element) {
   element.classList.remove("selected");
+  selectedIcon = undefined; 
 }
 
 function handleIconTap (element) {
@@ -133,7 +182,7 @@ function handleWindowTap(element) {
   element.style.display = "flex"
   biggestIndex++;
   element.style.zIndex = biggestIndex; 
-  topBar.style.zIndex = biggestIndex + 1; 
+  topBar.style.zIndex = biggestIndex + 1;
 }
 
 
@@ -149,6 +198,8 @@ centerWindow(welcomeScreen);
 
 document.getElementById("vInstallerClose").addEventListener("click", function() {
   closeWs(vInstaller);
+
+  document.getElementById("installerIcon").classList.remove("selected");
 });
 
 
@@ -254,6 +305,7 @@ installButton.addEventListener("click", function() {
   installationStarted = true;
   terms.disabled = true;
   installButton.disabled = true;
+  installStatus.classList.remove("rainbow");
   installStatus.textContent = "Preparing your Computer Companion";
 
   var progress = 0; 
@@ -292,6 +344,16 @@ terms.addEventListener("change", function() {
 
 });
 
+function updateTime() { 
+  var currentTime = new Date().toLocaleString();
+
+  document.querySelectorAll(".tyme").forEach(function(clock){
+    clock.textContent = currentTime;
+  });
+} 
+
+updateTime();
+setInterval(updateTime, 1000);
 
 initializeWindow("welcome");
 initializeWindow("askme");

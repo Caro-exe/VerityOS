@@ -59,9 +59,10 @@
     font-weight: 500
 }
 .selected{
-    color: rgb(26, 165, 174); 
+    background-color: rgba(73, 122, 125, 0.582); 
+    outline: 2px solid rgb(14, 89, 159);
+    border-radius: 16px;
     margin: 0px;
-    border-color: rgb(236, 203, 14);
 
 }
 .rainbow{
@@ -83,6 +84,11 @@
     color: black
 }
 #top{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 16px;
+    box-sizing: border-box;
     position: fixed; 
     top: 0;
     left: 0; 
