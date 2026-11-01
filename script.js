@@ -206,7 +206,7 @@ document.getElementById("vInstallerClose").addEventListener("click", function() 
 
 var questions = [
   {question: "What's this?",
-  answer: "This is just a regular OS! You're just having a regular day in minecraft of course! <br> you should really check out this awesome mod your friend asked you to download... click on the box ;D"},
+  answer: "This is just a regular OS! You're just having a regular day playing Minecraft! You should talk to your friends"},
   {question:"Everything fine?",
     answer:"Everythings fine. "
   }
@@ -355,6 +355,107 @@ function updateTime() {
 updateTime();
 setInterval(updateTime, 1000);
 
+var chatStory = {
+  start: {
+    messages: "hey dude ive got this really cool mod i think you should use it in your next youtube video",
+    replies: [
+      { text:"oh cool", next:"ik"},
+      { text:"really", next:"yes"}
+    ]
+  },
+  ik: {
+    messages: "ikr? I already sent ya the installer OS, im pretty sure you already have it installed",
+    replies: [
+      { text:"thanks bro", next:"np"},
+      { text:"huh where", next:"here"}
+    ]
+  },
+  yes: {
+    messages: "Yeah! install it!11! I send it over already!",
+    replies: [
+      { text:"alright! alright!", next:"nexttime"},
+      { text:"where", next:"here"}
+    ]
+  },
+  np: {
+    messages: "np homie, anyway open the goshdarn thing already",
+    replies: [
+      { text:"on it!", next:"nexttime"}
+    ]
+  },
+  here: {
+    messages: "dude! it's the icon with the box! It says open me! ",
+    replies: [
+      { text:"on it!", next:"nexttime"}
+    ]
+  },
+  nexttime: {
+    messages: "We should totally hang out one of these days btw",
+    replies: [
+      { text:"Yeah sure when?", next:"scary"}
+    ]
+  },
+  scary: {
+    messages: "... actually never mind",
+    replies: [
+      { text:"what happened dude?", next:"ghosting"}
+    ]
+  },
+  ghosting: {
+    messages: "...",
+    replies: [
+      { text:"hello?", next:"bloc"}
+    ]
+  },
+  bloc: {
+    messages: "This User Has Blocked You",
+    replies: []
+  },
+}
+
+var chatMessages = document.getElementById("chatMessages");
+var chatReplies = document.getElementById("chatReplies");
+
+function addChatMessage(text, mine, blocked) {
+  var message = document.createElement("p");
+
+  message.className = "chatMessage";
+  if(blocked) {
+    message.classList.add("blockedMessage");
+  }
+
+  if (mine) {
+    message.classList.add("mine");
+  }
+
+  message.textContent = (mine ? "You: " : "Twixxel: ")  + text;
+  chatMessages.appendChild(message);
+  chatMessages.scrollTop = chatMessages.scrollHeight;} 
+  function showChatStep(stepName) {
+    var step = chatStory[stepName];
+
+    addChatMessage(step.messages, false, stepName == "bloc");
+    chatReplies.replaceChildren();
+
+    step.replies.forEach(function(reply) {
+      var button = document.createElement("button");
+      button.textContent = reply.text;
+      button.addEventListener("click", function() {
+        addChatMessage(reply.text, true);
+        showChatStep(reply.next);
+      });
+
+      chatReplies.appendChild(button);
+   });
+}
+document.getElementById("chatClose").addEventListener("click", function() {
+  closeWs(document.getElementById("chat"));
+});
+
+
 initializeWindow("welcome");
 initializeWindow("askme");
 initializeWindow("vInstaller");
+initializeWindow("chat");
+showChatStep("start");
+

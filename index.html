@@ -18,12 +18,12 @@
       <br>
       <h2 class="rainbow"> This is an extremely normal OS </h2>
       <h4> It's just a good old day here  </h4>
-      <p> We're super happy, you should definitely consult the Q / A section ! <br> (headphones for best experience)  </p>
+      <p> Are you lost? Look at the Q and A section? <br> (headphones for best experience)  </p>
       <a href= "https://youtu.be/f6f3PhauXyg?si=NBHq271wnz3mTEu2" style = "color: aquamarine;"> Click here for context</a>
     </div>
     </div>
     <div id="deskApps" style="padding-top: 64px; padding-left: 64px;">
-        <div id = "askIcon" onclick="handleIconTap(this)" style="filter: drop-shadow(0 0 8px rgb(1, 21, 98)); text-align: center; width: fit-content; padding: 16px; ">
+        <div id = "askIcon"   onclick="handleIconTap(this)" style="filter: drop-shadow(0 0 8px rgb(1, 21, 98)); text-align: center; width: fit-content; padding: 16px; ">
           <img src="images/ask.png" style = "border-radius: 12px; height: 100px; width: 100px;">
           <p style="color: rgb(252, 250, 255); margin: 0px">Q&A</p>
         </div>
@@ -49,7 +49,7 @@
     </div>
     <img id = "verityCharacter" src="images/verity.png" style = "border-radius: 12px; height: 100px; width: 100px;">
   </div>
-  <div id = "installerIcon" onclick="selectIcon(this); openW(document.getElementById('vInstaller'))" style=" width: fit-content; padding: 16px; cursor: pointer;"> 
+  <div id = "installerIcon"  onclick="selectIcon(this); openW(document.getElementById('vInstaller'))" style=" width: fit-content; padding: 16px; cursor: pointer;"> 
     <img src="images/box.png", alt="", style="width: 200px; height: 100px; border-radius: 12px;">
     <p> Open me</p>
   </div>
@@ -126,5 +126,24 @@
         <p id="installStatus" role="status"> Please accept terms and conditions... </p>
       </div>
     </div>
+
+  <div onclick="openW(document.getElementById('chat'))" style="width: fit-content; padding: 16px; cursor: pointer; text-align: center;">
+    <img src="images/chat.png" style = "border-radius: 12px; height: 100px; width: 100px;"> 
+    <p> Chat</p>
+  </div>
+  <div class = "window" id = "chat" style= "background-color: rgb(41, 46, 68); background-size:cover">
+      <div class = "windowheader" id = "chatheader" >
+      <p> 
+        Messages - Twixxel
+      </p>
+      <p class="closeButton" id= "chatClose" style="font-size: 10px;"> x </p>
+     </div>
+    <div class="windowContent">
+      <div id="chatMessages" role="log" aria-live="polite"></div>
+      <div id="chatReplies"></div>
+    </div>
+  </div>  
+    
+  </div>
   </body>
 </html>
